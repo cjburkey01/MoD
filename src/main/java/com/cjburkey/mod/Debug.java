@@ -31,6 +31,10 @@ public final class Debug {
         logger.error(sanitize(msg), args);
     }
     
+    public static String format(double number, int places) {
+        return String.format("%." + places + "f", number);
+    }
+    
     public static void exception(Throwable error) {
         error("An exception occurred!");
         error("A full report follows");

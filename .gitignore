@@ -4,7 +4,8 @@
 # Java
 *.class
 *.jar
-bin
+bin/*
+out/*
 
 # Gradle
 .gradle
