@@ -1,0 +1,57 @@
+import org.gradle.internal.os.OperatingSystem
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+
+project.ext.lwjglVersion = "3.2.0-SNAPSHOT"
+project.ext.jomlVersion = "1.9.10"
+project.ext.steamworks4jVersion = "1.7.0"
+
+switch (OperatingSystem.current()) {
+    case OperatingSystem.WINDOWS:
+        project.ext.lwjglNatives = "natives-windows"
+        break
+    case OperatingSystem.LINUX:
+        project.ext.lwjglNatives = "natives-linux"
+        break
+    case OperatingSystem.MAC_OS:
+        project.ext.lwjglNatives = "natives-macos"
+        break
+}
+
+repositories {
+    mavenCentral()
+    maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+}
+
+dependencies {
+    compile "org.lwjgl:lwjgl:$lwjglVersion"
+    compile "org.lwjgl:lwjgl-assimp:$lwjglVersion"
+    compile "org.lwjgl:lwjgl-glfw:$lwjglVersion"
+    compile "org.lwjgl:lwjgl-jemalloc:$lwjglVersion"
+    compile "org.lwjgl:lwjgl-nuklear:$lwjglVersion"
+    compile "org.lwjgl:lwjgl-openal:$lwjglVersion"
+    compile "org.lwjgl:lwjgl-opengl:$lwjglVersion"
+    compile "org.lwjgl:lwjgl-rpmalloc:$lwjglVersion"
+    compile "org.lwjgl:lwjgl-stb:$lwjglVersion"
+    compile "org.lwjgl:lwjgl-tootle:$lwjglVersion"
+    compile "org.lwjgl:lwjgl-vma:$lwjglVersion"
+    compile "org.lwjgl:lwjgl-vulkan:$lwjglVersion"
+    compile "org.lwjgl:lwjgl-xxhash:$lwjglVersion"
+    compile "org.lwjgl:lwjgl:$lwjglVersion:$lwjglNatives"
+    compile "org.lwjgl:lwjgl-assimp:$lwjglVersion:$lwjglNatives"
+    compile "org.lwjgl:lwjgl-glfw:$lwjglVersion:$lwjglNatives"
+    compile "org.lwjgl:lwjgl-jemalloc:$lwjglVersion:$lwjglNatives"
+    compile "org.lwjgl:lwjgl-nuklear:$lwjglVersion:$lwjglNatives"
+    compile "org.lwjgl:lwjgl-openal:$lwjglVersion:$lwjglNatives"
+    compile "org.lwjgl:lwjgl-opengl:$lwjglVersion:$lwjglNatives"
+    compile "org.lwjgl:lwjgl-rpmalloc:$lwjglVersion:$lwjglNatives"
+    compile "org.lwjgl:lwjgl-stb:$lwjglVersion:$lwjglNatives"
+    compile "org.lwjgl:lwjgl-tootle:$lwjglVersion:$lwjglNatives"
+    compile "org.lwjgl:lwjgl-vma:$lwjglVersion:$lwjglNatives"
+    compile "org.lwjgl:lwjgl-vulkan:$lwjglVersion:$lwjglNatives"
+    compile "org.lwjgl:lwjgl-xxhash:$lwjglVersion:$lwjglNatives"
+    compile "org.joml:joml:${jomlVersion}"
+    compile "com.code-disaster.steamworks4j:steamworks4j:${steamworks4jVersion}"
+}

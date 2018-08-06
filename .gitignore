@@ -4,3 +4,12 @@
 # Java
 *.class
 *.jar
+
+# Gradle
+.gradle
+gradle
+
+#Idea
+*.iml
+*.ipr
+*.iws
