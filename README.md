@@ -19,3 +19,7 @@ Setup is very simple; all you must do is run the correct commands below:
 * Non-Windows & Idea: `./gradlew eclipse`
 
 That should be it, really. Then just open the repo in your preferred IDE
+
+#### Running
+
+To run the project, use your IDE or `gradlew.bat` on Windows, or `./gradlew` on non-Windows based systems.
