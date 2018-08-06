@@ -1,0 +1,22 @@
+(You can ignore this file, really; it's for Git-Terminal newbies like me)
+
+Git help for me because I just learned to use the command-line git:
+
+~ git remote add <NAME> <URL>
+    Adds a remote (shouldn't need to do this, but just in case)
+~ git branch
+    Base command for branches (shows current branch)
+~ git checkout <BRANCH>
+    Switches to <BRANCH>
+~ git pull
+    Pull changes from the remote repository
+~ git merge
+    Merge pulled remote changes with the local repository
+~ git status
+    Shows the current committed and uncommitted changes.
+~ git add --all
+    Adds all uncommitted changes to the next commit
+~ git commit -m "<MESSAGE>"
+    Commits all staged changes in the commit with "<MESSAGE>"
+~ git push -u origin master
+    Pushes the local "master" branch to the "origin" remote branch
