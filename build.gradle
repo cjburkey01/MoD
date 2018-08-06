@@ -8,18 +8,20 @@ apply plugin: 'application'
 project.ext.lwjglVersion = "3.2.0-SNAPSHOT"
 project.ext.jomlVersion = "1.9.10"
 project.ext.steamworks4jVersion = "1.7.0"
+project.ext.log4jVersion = "2.11.1"
 
 mainClassName = "com.cjburkey.mod.MoD"
 
 sourceSets {
     main {
         java {
-            srcDir 'src/main/java'
+            srcDirs = [ 'src/main/java' ]
+        }
+        resources {
+            srcDirs = [ 'src/main/resources' ]
         }
     }
 }
-
-sourceSets.main.output.classesDir = file("bin")
 
 defaultTasks 'compileJava', 'run'
 
@@ -32,7 +34,12 @@ switch (OperatingSystem.current()) {
         break
     case OperatingSystem.MAC_OS:
         project.ext.lwjglNatives = "natives-macos"
+        applicationDefaultJvmArgs = [ "-XstartOnFirstThread" ]
         break
+}
+
+compileJava {
+    options.compilerArgs += '-proc:none'
 }
 
 repositories {
@@ -69,4 +76,6 @@ dependencies {
     compile "org.lwjgl:lwjgl-xxhash:$lwjglVersion:$lwjglNatives"
     compile "org.joml:joml:${jomlVersion}"
     compile "com.code-disaster.steamworks4j:steamworks4j:${steamworks4jVersion}"
+    compile "org.apache.logging.log4j:log4j-api:${log4jVersion}"
+    compile "org.apache.logging.log4j:log4j-core:${log4jVersion}"
 }
