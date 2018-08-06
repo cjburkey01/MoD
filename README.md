@@ -16,7 +16,7 @@ Setup is very simple; all you must do is run the correct commands below:
 * Windows & Eclipse: `gradlew.bat eclipse`
 * Windows & Idea: `gradlew.bat idea`
 * Non-Windows & Eclipse: `./gradlew eclipse`
-* Non-Windows & Idea: `./gradlew eclipse`
+* Non-Windows & Idea: `./gradlew idea`
 
 That should be it, really. Then just open the repo in your preferred IDE
 
