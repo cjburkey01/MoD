@@ -3,10 +3,25 @@ import org.gradle.internal.os.OperatingSystem
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
+apply plugin: 'application'
 
 project.ext.lwjglVersion = "3.2.0-SNAPSHOT"
 project.ext.jomlVersion = "1.9.10"
 project.ext.steamworks4jVersion = "1.7.0"
+
+mainClassName = "com.cjburkey.mod.MoD"
+
+sourceSets {
+    main {
+        java {
+            srcDir 'src/main/java'
+        }
+    }
+}
+
+sourceSets.main.output.classesDir = file("bin")
+
+defaultTasks 'compileJava', 'run'
 
 switch (OperatingSystem.current()) {
     case OperatingSystem.WINDOWS:
