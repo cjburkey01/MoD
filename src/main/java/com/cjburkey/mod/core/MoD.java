@@ -1,6 +1,7 @@
 package com.cjburkey.mod.core;
 
 import com.cjburkey.mod.entity.EntityWorld;
+import org.joml.Vector2i;
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.opengl.GL;
 
@@ -23,6 +24,7 @@ public final class MoD implements Runnable {
     private long gameRenders = 0L;
     
     private long window;
+    private final Vector2i windowSize = new Vector2i(300, 300);
     private EntityWorld world = new EntityWorld();
     
     private MoD() {
@@ -48,7 +50,7 @@ public final class MoD implements Runnable {
         glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE);
         glfwWindowHint(GLFW_RESIZABLE, GLFW_TRUE);
     
-        window = glfwCreateWindow(300, 300, "MoD! 0.0.1", NULL, NULL);
+        window = glfwCreateWindow(windowSize.x, windowSize.y, "MoD! 0.0.1", NULL, NULL);
         if (window == NULL) {
             throw new RuntimeException("Failed to create GLFW window");
         }
@@ -63,7 +65,10 @@ public final class MoD implements Runnable {
         Debug.info("Initialized OpenGL {}", glGetString(GL_VERSION));
         
         glfwSwapInterval(1);
-        glfwSetFramebufferSizeCallback(window, (window, w, h) -> glViewport(0, 0, w, h));
+        glfwSetFramebufferSizeCallback(window, (window, w, h) -> {
+            glViewport(0, 0, w, h);
+            windowSize.set(w, h);
+        });
         glfwSetKeyCallback(window, (win, key, code, action, mods) -> {
             if (action == GLFW_PRESS) {
                 Input.onKeyPress(key);
@@ -127,6 +132,7 @@ public final class MoD implements Runnable {
     }
     
     private void update() {
+        Game.update();
         world.onUpdate(getDeltaTime());
     
         gameTicks ++;
@@ -136,6 +142,7 @@ public final class MoD implements Runnable {
         glfwSetWindowTitle(window, String.format(title, Debug.format(1.0d / deltaTimeD, 2)));
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         
+        Game.render();
         world.onRender(getDeltaTime());
         
         glfwSwapBuffers(window);
@@ -165,6 +172,10 @@ public final class MoD implements Runnable {
     
     public EntityWorld getWorld() {
         return world;
+    }
+    
+    public Vector2i getWindowSize() {
+        return new Vector2i(windowSize);
     }
     
     public static void main(String[] args) {

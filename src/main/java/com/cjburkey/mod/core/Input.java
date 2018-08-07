@@ -50,15 +50,23 @@ public final class Input {
     static void onUpdate() {
         firstKeys.clear();
         firstBtns.clear();
+        Set<Key> keysToRemove = new HashSet<>();
+        Set<MouseButton> btnsToRemove = new HashSet<>();
         for (Map.Entry<Key, Boolean> key : keys.entrySet()) {
             if (!key.getValue()) {
-                keys.remove(key.getKey());
+                keysToRemove.add(key.getKey());
             }
+        }
+        for (Key key : keysToRemove) {
+            keys.remove(key);
         }
         for (Map.Entry<MouseButton, Boolean> btn : btns.entrySet()) {
             if (!btn.getValue()) {
-                btns.remove(btn.getKey());
+                btnsToRemove.add(btn.getKey());
             }
+        }
+        for (MouseButton btn : btnsToRemove) {
+            btns.remove(btn);
         }
     }
     

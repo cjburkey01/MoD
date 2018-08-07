@@ -5,7 +5,11 @@ layout (location = 1) in vec2 uv;
 
 out vec2 tex;
 
+uniform mat4 projectionMatrix;
+uniform mat4 viewMatrix;
+uniform mat4 modelMatrix;
+
 void main() {
-    gl_Position = vec4(pos, 0.0, 1.0);
+    gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(pos, 0.0, 1.0);
     tex = uv;
 }

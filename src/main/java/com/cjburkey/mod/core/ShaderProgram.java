@@ -1,5 +1,7 @@
 package com.cjburkey.mod.core;
 
+import com.cjburkey.mod.component.Camera;
+import com.cjburkey.mod.component.Transform;
 import org.joml.Matrix3f;
 import org.joml.Matrix4f;
 import org.joml.Vector2f;
@@ -83,6 +85,7 @@ public final class ShaderProgram {
         int at = getOrRegisterUniform(name);
         if (at >= 0) {
             ifFound.success(at);
+            return;
         }
         Debug.error("Failed to locate uniform \"{}\"", name);
     }
@@ -113,6 +116,15 @@ public final class ShaderProgram {
     
     public void setUniform(String name, Matrix4f value) {
         setUniform(name, (loc) -> glUniformMatrix4fv(loc, false, value.get(new float[16])));
+    }
+    
+    public void setCameraUniforms(Camera camera) {
+        camera.getProjectionMatrix("projectionMatrix", this);
+        camera.getViewMatrix("viewMatrix", this);
+    }
+    
+    public void setObjectUniforms(Transform transform) {
+        setUniform("modelMatrix", transform.getModelMatrix());
     }
     
     public static void unbindPrograms() {
