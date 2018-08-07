@@ -10,7 +10,7 @@ project.ext.jomlVersion = "1.9.10"
 project.ext.steamworks4jVersion = "1.7.0"
 project.ext.log4jVersion = "2.11.1"
 
-mainClassName = "com.cjburkey.mod.MoD"
+mainClassName = "com.cjburkey.mod.core.MoD"
 
 sourceSets {
     main {

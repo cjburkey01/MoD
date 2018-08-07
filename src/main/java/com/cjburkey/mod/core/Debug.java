@@ -1,7 +1,7 @@
-package com.cjburkey.mod;
+package com.cjburkey.mod.core;
 
-import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 
 public final class Debug {
     
@@ -45,7 +45,7 @@ public final class Debug {
     }
     
     private static void printStackTrace(Throwable error) {
-        error("  {}", error.getMessage());
+        error("{}:  {}", error.getClass().getName(), error.getMessage());
         for (StackTraceElement e : error.getStackTrace()) {
             error("    {}",  e);
         }
