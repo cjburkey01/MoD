@@ -6,6 +6,7 @@
 *.jar
 bin/*
 out/*
+build/*
 
 # Gradle
 .gradle
